@@ -25,8 +25,8 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "w") as file:
                 json.dump(tar_dict, file)
-        except (PermissionError, IOError) as e:
-            print(f"an error occurred: {e}")
+        except (PermissionError, IOError):
+            return
 
     def reload(self):
         """Deserialize the JSON file and save it to __objects"""
@@ -37,5 +37,5 @@ class FileStorage:
                     class_name = value["__class__"]
                     del value["__class__"]
                     self.new(eval(class_name)(**value))
-        except (FileNotFoundError, IOError, PermissionError) as e:
-            print(f"an error occurred: {e}")
+        except (FileNotFoundError, IOError, PermissionError):
+            return

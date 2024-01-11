@@ -9,7 +9,9 @@ import re
 
 class HBNBCommand(cmd.Cmd):
     """main class for the console"""
+
     prompt = '(hbnb)'
+    __supported_classes = ["BaseModel", "FileStorage"]
 
     def do_create(self, line):
         """
@@ -21,12 +23,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             args = line.split()
             class_name = args[0]
+
             try:
                 cls = globals()[class_name]
-                New_instance = cls()
-                New_instance.save()
+                new_instance = cls()
+                new_instance.save()
+                print(new_instance.id)
 
-                print(New_instance.id)
             except KeyError:
                 print("** class doesn't exist **")
 
@@ -50,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
                 search_key = "{}.{}".format(class_name, instance_id)
                 # get the dictionary of all instances
                 models.storage.reload()
-                instance_dict = models.storage._FileStorage__objects
+                instance_dict = models.storage.all()
                 if search_key not in instance_dict:
                     print("** no instance found **")
                 else:
@@ -67,20 +70,18 @@ class HBNBCommand(cmd.Cmd):
             args = line.split()
             class_name = args[0]
             if class_name not in globals().keys():
-                print("** class doen't exist **")
+                print("** class doesn't exist **")
             elif len(args) < 2:
-                print("** instacne id missing **")
+                print("** instance id missing **")
             else:
                 instance_id = args[1]
                 search_key = "{}.{}".format(class_name, instance_id)
                 models.storage.reload()
-                instance_dict = models.storage._FileStorage__objects
+                instance_dict = models.storage.all()
                 if search_key not in instance_dict:
                     print("** no instance found **")
                 else:
                     del instance_dict[search_key]
-                    # not sure if this step is nessesarys
-                    models.storage._FileStorage__objects = instance_dict
                     models.storage.save()
 
     def do_all(self, line):
@@ -89,11 +90,12 @@ class HBNBCommand(cmd.Cmd):
         based or not on the class name
         """
         models.storage.reload()
-        instance_dict = models.storage._FileStorage__objects
-        if not line:
+        instance_dict = models.storage.all()
+        if line != "" and line not in HBNBCommand.__supported_classes:
             print("** class doesn't exist **")
-            str_list = [f"{key}: {value}"
-                        for key, value in instance_dict.items()]
+        elif line == "":
+            str_list = [f"{value}"
+                        for value in instance_dict.values()]
             print(str_list)
         else:
             args = line.split()
@@ -102,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 re_match = r'^{}'.format(class_name)
-                str_list = [f"{key}: {value}"
+                str_list = [f"{value}]"
                             for key, value in instance_dict.items()
                             if re.match(re_match, key)]
                 print(str_list)
@@ -134,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
                 attr_value = args[3]
                 if attr_name not in ['id', 'created_at', 'updated_at']:
                     models.storage.reload()
-                    instance_dict = models.storage._FileStorage__objects
+                    instance_dict = models.storage.all()
                     if search_key not in instance_dict:
                         print("** no instance found **")
                     else:
@@ -155,7 +157,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """sets how the shell behaves on an empty line"""
-        pass
+        return False
 
 
 if __name__ == '__main__':
