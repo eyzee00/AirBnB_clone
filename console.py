@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     """main class for the console"""
 
     prompt = '(hbnb)'
-    __supported_classes = ["BaseModel", "FileStorage"]
+    __supported_classes = ["BaseModel"]
 
     def do_create(self, line):
         """
