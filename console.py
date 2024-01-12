@@ -25,6 +25,12 @@ class HBNBCommand(cmd.Cmd):
             "City",
             "Review"
             ]
+    __supported_methods = [
+            "all",
+            "create",
+            "count",
+            "destroy"
+            ]
 
     def do_create(self, line):
         """
@@ -171,6 +177,56 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """sets how the shell behaves on an empty line"""
         return False
+
+    def count(self, class_name):
+        """retrieve the number of instances of a class"""
+        models.storage.reload()
+        instance_dict = models.storage.all()
+        re_match = r'^{}'.format(class_name)
+        str_list = [f"{value}]"
+                    for key, value in instance_dict.items()
+                    if re.match(re_match, key)]
+        return (len(str_list))
+
+    def command_extracter(self, str):
+        """ extract funciton and it's parameters"""
+        fun, par = str.split('(')
+        par = par[:-1]  # remove the closing parenthesis
+        par = par.split(',')
+        return fun, par
+
+    def is_valid_command(self, command):
+        """
+        this fucntion compare the argument aganist a regex to
+        only pass valid custom commands in the syntax class.function()
+        """
+        return bool(re.match(r'^\w+\.\w+\(.*\)$', command))
+
+    def default(self, line):
+        """
+        used to implement the default behavior of the class
+        modified it to handle the <class_name>.function()
+        syntax
+        """
+        if not self.is_valid_command(line):
+            print('*** Unknown syntax: command')
+        else:
+            class_name, method = line.split('.')
+            func, par = self.command_extracter(method)
+
+            if func == 'count':
+                print(self.count(class_name))
+            elif par == ['']:
+                try:
+                    getattr(self, 'do_' + func)(class_name)
+                except AttributeError:
+                    print("*** syntax error")
+            else:
+                full_command = class_name + " " + "".join(par)
+                try:
+                    getattr(self, 'do_' + func)(full_command)
+                except AttributeError:
+                    print("*** syntax error")
 
 
 if __name__ == '__main__':
