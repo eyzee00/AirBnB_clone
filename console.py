@@ -3,7 +3,12 @@
 import cmd
 import models
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models.user import User
+from models.amenity import Amenity
+from models.place import Place
+from models.city import City
+from models.state import State
+from models.review import Review
 import re
 
 
@@ -11,7 +16,15 @@ class HBNBCommand(cmd.Cmd):
     """main class for the console"""
 
     prompt = '(hbnb)'
-    __supported_classes = ["BaseModel"]
+    __supported_classes = [
+            "BaseModel",
+            "User",
+            "Place",
+            "Amenity",
+            "State",
+            "City",
+            "Review"
+            ]
 
     def do_create(self, line):
         """
@@ -131,13 +144,13 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 instance_id = args[1]
-                search_key = "{}.{}".format(class_name, instance_id)
+                search_key = f"{class_name}.{instance_id}"
                 attr_name = args[2]
-                attr_value = args[3]
+                attr_value = args[3].strip("\"")
                 if attr_name not in ['id', 'created_at', 'updated_at']:
                     models.storage.reload()
-                    instance_dict = models.storage.all()
-                    if search_key not in instance_dict:
+                    instance_dict = dict(models.storage.all())
+                    if search_key not in instance_dict.keys():
                         print("** no instance found **")
                     else:
                         instance = instance_dict[search_key]

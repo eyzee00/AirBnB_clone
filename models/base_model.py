@@ -22,7 +22,7 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        return f"[{__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """update the public instance attribute"""
@@ -31,7 +31,7 @@ class BaseModel():
 
     def to_dict(self):
         """returns a dicitionary containing all keys/values of the object"""
-        target_dict = {key: value for key, value in self.__dict__.items()}
+        target_dict = {k: v for k, v in self.__dict__.items()}
         target_dict['created_at'] = self.created_at.isoformat()
         target_dict['updated_at'] = self.updated_at.isoformat()
         target_dict['__class__'] = self.__class__.__name__
