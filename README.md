@@ -1,17 +1,49 @@
-# AirBnB Clone
+# AirBnB Clone Console
 
-The main project in the ALX software engineering program, The goal of the project is to deploy on your server a simple clone of the Airbnb website.
+## Project Description
+This project is a simplified Airbnb clone with a console interface implemented in Python. It allows users to interact with the system using various commands to manage properties, users, and bookings.
 
-## The console 
+## Command Interpreter
 
-The initial focus is on crafting a robust storage system. This powerful storage engine serves as a crucial abstraction layer between "My object" and the intricacies of their storage and persistence. Essentially, this means that when working with your console code, the command interpreter itself, as well as the future front-end and RestAPI components, you won't need to concern yourself with the specifics of how your objects are stored.
+The command interpreter is built using the Python cmd module, providing a user-friendly interface to perform various operations within the Airbnb clone. Users can input commands to create and manage users, amenities, and more.
 
-Moreover, this abstraction provides the flexibility to seamlessly switch between different storage types without the need for extensive updates throughout your codebase.
+## How to start
+To start the Airbnb Clone Console Interface, follow these steps:
+1. Clone the repository to your local machine:
 
-The console is designed to serve as a tool for validating and ensuring the functionality of this versatile storage engine.
+   ```bash
+   git clone https://github.com/eyzee00/AirBnB_clone.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+      cd AirBnb_clone
+    ```
+3. Run the command interpreter:
+   ```bash
+      python3 console.py
+   ```
+## How to use
+Once the command interpreter is running, you can enter commands to perform various actions. The general syntax for commands is as follows:
+   ```python
+    (hbnb)command_name [arg1] [arg2] ... [argN]
+   ```
+## Examples
+1. show all users:
 
+   ```bash
+   (hbnb)all User
+   ```
+2. create  a user
+   ```
+   (hbnb)create User
+    ```
+      this creates a default user and return it's ID
+3. the help command to find all command
+   ```bash
+    (hbhb)help
+   ```
 
-## Contributing
+##  Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
