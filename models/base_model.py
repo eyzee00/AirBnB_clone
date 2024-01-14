@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Defines a class BaseModel"""
+import models
 from datetime import datetime
 import uuid
-from models import storage
 
 
 class BaseModel():
@@ -19,7 +19,7 @@ class BaseModel():
                 else:
                     self.__dict__[key] = value
         else:
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """return the string format of the class"""
@@ -28,7 +28,7 @@ class BaseModel():
     def save(self):
         """update the public instance attribute"""
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """returns a dicitionary containing all keys/values of the object"""
