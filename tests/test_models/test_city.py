@@ -5,7 +5,7 @@ from models.city import City
 import unittest
 
 
-class TestAmenity(unittest.TestCase):
+class TestCity(unittest.TestCase):
     """a test class to test the city class"""
     def test_default_values(self):
         """Test that the default values are as expected"""
