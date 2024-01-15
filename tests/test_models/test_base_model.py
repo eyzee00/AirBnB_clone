@@ -20,8 +20,8 @@ class TestBaseModel(unittest.TestCase):
         """test the passed object through kwargs"""
         # an object with id and a custom attribute
         data = {'id': '123',
-                'crated_at': '2024-01-01T12:00:00',
-                'updated_at': '2024-01-01T12:00:00',
+                'crated_at': '2017-09-28T21:07:25.047372',
+                'updated_at': '2017-09-28T21:07:25.047372',
                 'custom_attr': 'value'}
         model = BaseModel(**data)
         self.assertAlmostEqual(model.id, '123')
