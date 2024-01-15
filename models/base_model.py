@@ -15,8 +15,8 @@ class BaseModel():
         if len(kwargs) != 0:
             for key, value in kwargs.items():
                 if key in ('created_at', 'updated_at'):
-                    format_sequence = "%Y-%m-%dT%H:%M:%S.%f"
-                    self.__dict__[key] = datetime.strptime(value, format_sequence)
+                    codex = "%Y-%m-%dT%H:%M:%S.%f"
+                    self.__dict__[key] = datetime.strptime(value, codex)
                 else:
                     self.__dict__[key] = value
         else:

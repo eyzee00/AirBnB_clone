@@ -21,7 +21,7 @@ class FileStorage:
 
     def new(self, obj):
         """
-        sets in __objects the obj as a value to 
+        sets in __objects the obj as a value to
         the key in this format: <obj class name>.objectid
         """
         class_name = obj.__class__.__name__
