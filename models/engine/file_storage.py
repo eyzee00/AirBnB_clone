@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Module: defines the FileStorage class"""
+import os
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -38,12 +39,18 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file and saves it back to __objects"""
-        try:
-            with open(FileStorage.__file_path) as file:
-                loaded_dict = json.load(file)
-                for value in loaded_dict.values():
-                    class_name = value["__class__"]
-                    del value["__class__"]
-                    self.new(eval(class_name)(**value))
-        except FileNotFoundError:
+        if os.path.exists(self.__file_path) is False:
             return
+
+        with open(FileStorage.__file_path) as file:
+            loaded_dict = None
+            try:
+                loaded_dict = json.load(file)
+            except json.JSONDecodeError:
+                pass
+            if loaded_dict is None:
+                return
+            for value in loaded_dict.values():
+                class_name = value["__class__"]
+                del value["__class__"]
+                self.new(eval(class_name)(**value))
