@@ -11,21 +11,24 @@ from models.review import Review
 
 
 class FileStorage:
-    """Represent a file based storage engine"""
+    """FileStorage: defines the FileStorage object"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Return the dictionary __objects"""
+        """returns the private dictionary __objects"""
         return FileStorage.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """
+        sets in __objects the obj as a value to 
+        the key in this format: <obj class name>.objectid
+        """
         class_name = obj.__class__.__name__
         FileStorage.__objects["{}.{}".format(class_name, obj.id)] = obj
 
     def save(self):
-        """Serialize __objects to JSON and save"""
+        """serializes the private dictionary __objects to JSON and saves it"""
         cls_dict = self.all()
         tar_dict = {}
         for key, objct in cls_dict.items():
@@ -34,7 +37,7 @@ class FileStorage:
             json.dump(tar_dict, file)
 
     def reload(self):
-        """Deserialize the JSON file and save it to __objects"""
+        """deserializes the JSON file and saves it back to __objects"""
         try:
             with open(FileStorage.__file_path) as file:
                 loaded_dict = json.load(file)
@@ -42,5 +45,5 @@ class FileStorage:
                     class_name = value["__class__"]
                     del value["__class__"]
                     self.new(eval(class_name)(**value))
-        except FileNotFoundError:
+        except (FileNotFoundError, IOError, PermissionError):
             return
