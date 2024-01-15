@@ -40,6 +40,33 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("Amenity." + test_amenity.id, storage.all().keys())
         self.assertIn("Review." + test_review.id, storage.all().keys())
 
+    def test_new_method(self):
+        "test the new method"
+        storage = FileStorage()
+        self.assertIsInstance(storage.all(), dict)
+        test_model = BaseModel()
+        test_state = State()
+        test_city = City()
+        test_place = Place()
+        test_user = User()
+        test_amenity = Amenity()
+        test_review = Review()
+        storage.new(test_model)
+        storage.new(test_state)
+        storage.new(test_place)
+        storage.new(test_city)
+        storage.new(test_user)
+        storage.new(test_amenity)
+        storage.new(test_review)
+        self.assertIn("BaseModel." + test_model.id, storage.all().keys())
+        self.assertIn("User." + test_user.id, storage.all().keys())
+        self.assertIn("State." + test_state.id, storage.all().keys())
+        self.assertIn("City." + test_city.id, storage.all().keys())
+        self.assertIn("Place." + test_place.id, storage.all().keys())
+        self.assertIn("Amenity." + test_amenity.id, storage.all().keys())
+        self.assertIn("Review." + test_review.id, storage.all().keys())
+
+
     def test_save_method(self):
         """test the save method"""
         storage = FileStorage()
