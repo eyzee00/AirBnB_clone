@@ -41,12 +41,11 @@ class FileStorage:
         """deserializes the JSON file and saves it back to __objects"""
         if os.path.exists(self.__file_path) is False:
             return
-
         with open(FileStorage.__file_path) as file:
             loaded_dict = None
             try:
                 loaded_dict = json.load(file)
-            except json.JSONDecodeError:
+            except (json.JSONDecodeError, IOError, PermissionError):
                 pass
             if loaded_dict is None:
                 return
