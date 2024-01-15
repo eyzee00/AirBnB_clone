@@ -2,7 +2,6 @@
 """defines tests for the file storage model"""
 import unittest
 from models.engine.file_storage import FileStorage
-from models import storage
 from models.base_model import BaseModel
 from models.city import City
 from models.user import User
@@ -17,6 +16,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all_and_new_method(self):
         """test the all method"""
+        storage = FileStorage()
         self.assertIsInstance(storage.all(), dict)
         test_model = BaseModel()
         test_state = State()
@@ -42,6 +42,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save_method(self):
         """test the save method"""
+        storage = FileStorage()
         test_model = BaseModel()
         test_state = State()
         test_city = City()
@@ -70,6 +71,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload_method(self):
         """test the reload function"""
+        storage = FileStorage()
         test_model = BaseModel()
         test_state = State()
         test_city = City()
