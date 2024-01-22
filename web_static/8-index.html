@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AirBnB clone</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/4-common.css">
+    <link rel="stylesheet" href="styles/3-header.css">
+    <link rel="stylesheet" href="styles/3-footer.css">
+    <link rel="stylesheet" href="styles/6-filters.css">
+    <link rel="stylesheet" href="styles/8-places.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous">
+    <link rel="icon" href="images/icon.png">
+  </head>
+
+  <body>
+    <header></header>
+
+    <div class="container">
+      <section class="filters">
+        <div class="locations">
+          <h3>States</h3>
+          <h4>California, Arizona...</h4>
+          <div class="popover">
+            <h2>California:</h2>
+            <ul>
+              <li>Los Angeles</li>
+              <li>San Fransisco</li>
+	      <li>California City</li>
+            </ul>
+            <h2>Arizona:</h2>
+            <ul>
+              <li>Phoenix</li>
+              <li>Scottsdale</li>
+            </ul>
+          </div>
+
+        </div><div class="amenities">
+          <h3>Amenities</h3>
+          <h4>Internet, Kitchen...</h4>
+          <ul class="popover">
+            <li>Internet</li>
+            <li>Kitchen</li>
+            <li>Flat Screen TV</li>
+	    <li>Two Bedrooms</li>
+            <li>Backyard</li>
+          </ul>
+        </div>
+        <button>Search</button>
+      </section>
+
+      <section class="places">
+        <h1>Places</h1>
+        <article>
+          <div class="name_and_price">
+            <h2>Mansion</h2>
+            <div class="price_by_night">&#36;546</div>
+          </div>
+          <div class="information">
+            <div class="max_guest">
+              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+              <br>32 Guests
+            </div>
+            <div class="number_rooms">
+              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+              <br>10 Rooms
+            </div>
+            <div class="number_bathrooms">
+              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+              <br>4 Bathrooms
+            </div>
+          </div>
+          <div class="user">
+            <strong>Owner:</strong> Elon Musk
+          </div>
+          <div class="description">
+            Do you want to try what it feels like to be Elon, well... we have
+	    just the right thing for ya! Huge mansion filled with rooms and 
+	    just the right type of estate for partying, you might think that
+	    the low price is a little shady, trust me... it isn't :)
+          </div>
+        </article>
+
+        <article>
+          <div class="name_and_price">
+            <h2>Mom's basement</h2>
+            <div class="price_by_night">&#36;10</div>
+          </div>
+          <div class="information">
+            <div class="max_guest">
+              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+              <br>2 Guest
+            </div>
+            <div class="number_rooms">
+              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+              <br>0 Rooms
+            </div>
+            <div class="number_bathrooms">
+              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+              <br>0 Bathrooms
+            </div>
+          </div>
+          <div class="user"><strong>Owner:</strong>Mom</div>
+          <div class="description">
+            I finally got a minimum wage job and won't be spending
+	    time in my mom's basement anymore, but I could use the 
+	    extra 10$... it comes with regular housemade snacks,
+	    just the kind of food to keep you nice and lazy!
+          </div>
+        </article>
+
+        <article>
+          <div class="name_and_price">
+            <h2>World War 2 Bunker</h2>
+            <div class="price_by_night">&#36;500</div>
+          </div>
+          <div class="information">
+            <div class="max_guest">
+              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+              <br>1 Guest
+            </div>
+            <div class="number_rooms">
+              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+              <br>1 Room
+            </div>
+            <div class="number_bathrooms">
+              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+              <br>1 Bathroom
+            </div>
+          </div>
+          <div class="user">
+            <strong>Owner:</strong> Federal Governement
+          </div>
+          <div class="description">
+	     I hate to break it down to you, but your governemnt is
+	     running out of money, if you ever feel unsafe, we got your
+	     backs, literally! If you ever need a place to lay low after
+	     a bank roberry, our war tested bunker got you covered!
+          </div>
+        </article>
+        <article>
+          <div class="name_and_price">
+            <h2>Abandoned House</h2>
+            <div class="price_by_night">&#36;75</div>
+          </div>
+          <div class="information">
+            <div class="max_guest">
+              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+              <br>3 Guests
+            </div>
+            <div class="number_rooms">
+              <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+              <br>5-100 Rooms
+            </div>
+            <div class="number_bathrooms">
+              <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+              <br>1 Bathroom
+            </div>
+          </div>
+          <div class="user">
+            <strong>Owner:</strong>Invisible Ghost</div>
+          <div class="description">
+	      Movie directors are running out of spooky movies to make,
+	      all they do is rehash old stuff, maybe you can help with
+	      that, I'm sure a few nights in our certified ghost haunted
+	      house will refresh their memory...
+          </div>
+        </article>
+
+      </section>
+    </div>
+
+    <footer>Best School</footer>
+  </body>
+</html>
